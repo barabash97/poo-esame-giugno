@@ -16,6 +16,7 @@ import ant.Coordinate;
 import ant.Formicaio;
 import ant.costanti.CostantiSimulazione;
 import ant.formica.Esploratrice;
+import ant.formica.Formica;
 import ant.formica.Inseguitrice;
 import ant.gui.GUI;
 
@@ -24,8 +25,7 @@ public class Simulatore {
 	final private Ambiente ambiente;
 
 	/* DA CAMBIARE VEDI DOMANDA 2 */
-	final private List<Esploratrice> formicheEsploratrici;
-	final private List<Inseguitrice> formicheInseguitrici;
+	final private List<Formica> formiche;
 
 	private int passo;
 
@@ -40,8 +40,7 @@ public class Simulatore {
 	public Simulatore(int dim) {
 		this.ambiente = new Ambiente(dim);
 		this.passo = 0;
-		this.formicheInseguitrici = new ArrayList<>();
-		this.formicheEsploratrici = new ArrayList<>();
+		this.formiche = new ArrayList<>();
 		this.generatoreCasuale = new GeneratoreCasuale();
 		creaFormica();
 	}
@@ -49,8 +48,8 @@ public class Simulatore {
 	private void creaFormica() {
 		/* DA AGGIORNARE (VEDI DOMANDA 2, ed anche 7) */
 		for(int i=0; i<NUMERO_FORMICHE_PER_TIPOLOGIA; i++) {
-			this.formicheEsploratrici.add(creaEsploratrice());
-			this.formicheInseguitrici.add(creaInseguitrice());
+			this.formiche.add(creaEsploratrice());
+			this.formiche.add(creaInseguitrice());
 		}
 	}
 	
@@ -62,12 +61,8 @@ public class Simulatore {
 		return new Inseguitrice(this.getAmbiente());
 	}
 
-	public List<Esploratrice> getFormicheEsploratici() {
-		return this.formicheEsploratrici;
-	}
-
-	public List<Inseguitrice> getFormicheInseguitrici() {
-		return this.formicheInseguitrici;
+	public List<Formica> getFormiche() {
+		return this.formiche;
 	}
 
 	public void setGUI(GUI gui) {
@@ -106,14 +101,11 @@ public class Simulatore {
 
 	private void simulaFormiche() {
 		/* DA CAMBIARE ( VEDI DOMANDA 2 )*/
-		Collections.shuffle(this.formicheEsploratrici);
-		Collections.shuffle(this.formicheInseguitrici);
-		for(Esploratrice formica : this.formicheEsploratrici) {
+		Collections.shuffle(this.formiche);
+		for(Formica formica : this.formiche) {
 			formica.simula(this.getPasso());
 		}
-		for(Inseguitrice formica : this.formicheInseguitrici) {
-			formica.simula(this.getPasso());
-		}
+
 	}
 
 	private void simulaDissipazioneFerormone() {

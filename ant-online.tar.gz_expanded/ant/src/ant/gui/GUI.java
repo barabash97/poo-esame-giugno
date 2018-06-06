@@ -26,8 +26,7 @@ import ant.Ambiente;
 import ant.Cibo;
 import ant.Coordinate;
 import ant.Formicaio;
-import ant.formica.Esploratrice;
-import ant.formica.Inseguitrice;
+import ant.formica.Formica;
 import ant.simulatore.Simulatore;
 import ant.simulatore.Statistiche;
 
@@ -78,10 +77,8 @@ public class GUI extends JPanel {
 		g.setColor(YELLOW);
 
 		/* DA CAMBIARE (VEDI DOMANDA 2) */
-		for (Esploratrice formica : this.simulatore.getFormicheEsploratici()) {
-			disegnaFormica(g, formica);
-		}
-		for (Inseguitrice formica : this.simulatore.getFormicheInseguitrici()) {
+		
+		for (Formica formica : this.simulatore.getFormiche()) {
 			disegnaFormica(g, formica);
 		}
 
@@ -107,8 +104,7 @@ public class GUI extends JPanel {
 		g.setColor(BLACK);
 	}
 
-	private void disegnaFormica(Graphics g, Esploratrice formica) {
-        /* DA CAMBIARE ( VEDI DOMANDA 2 )*/        
+	private void disegnaFormica(Graphics g, Formica formica) {        
         final Coordinate pos = formica.getPosizione();		
 		final Image immagine = formica.getImmagine();
 		final String ids = formica.toString();
@@ -118,16 +114,6 @@ public class GUI extends JPanel {
 		disegnaImmagine(g, immagine, pos);
 	}
 
-	private void disegnaFormica(Graphics g, Inseguitrice formica) {
-        /* DA CAMBIARE ( VEDI DOMANDA 2 )*/        
-        final Coordinate pos = formica.getPosizione();		
-		final Image immagine = formica.getImmagine();
-		final String ids = formica.toString();
-		disegnaTesto(g, pos, ids);
-		if (formica.ciboCaricato())
-			disegnaCibo(g, pos);
-		disegnaImmagine(g, immagine, pos);
-	}
 
 	private void disegnaTesto(Graphics g, Coordinate p, String testo) {
 		final int x = p.getX();

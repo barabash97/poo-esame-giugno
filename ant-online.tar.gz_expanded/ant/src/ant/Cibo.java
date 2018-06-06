@@ -1,15 +1,13 @@
 package ant;
 
-import ant.formica.Esploratrice;
-import ant.formica.Inseguitrice;
+import ant.formica.Formica;
 
 public class Cibo {
 
 	private Coordinate posizione;
 	
-	/* DA CAMBIARE: VEDI DOMANDA 2 */
-	private Esploratrice raccoglitriceEsploratrice;
-	private Inseguitrice raccoglitriceInseguitrice;
+
+	private Formica formica;
 	
 	public Cibo(Coordinate p) {
 		this.posizione = p;
@@ -19,19 +17,12 @@ public class Cibo {
 		return this.posizione;
 	}
 	
-	public void setRaccoglitrice(Esploratrice formica) {
-		this.raccoglitriceEsploratrice = formica;
+	public void setRaccoglitrice(Formica formica) {
+		this.formica = formica;
 	}
 
-	public void setRaccoglitrice(Inseguitrice formica) {
-		this.raccoglitriceInseguitrice = formica;
-	}
 
-	public Esploratrice getRaccoglitriceEsploratrice() {
-		return this.raccoglitriceEsploratrice;
-	}
-
-	public Inseguitrice getRaccoglitriceInseguitrice() {
-		return this.raccoglitriceInseguitrice;
+	public Formica getFormiche() {
+		return this.formica;
 	}
 }
